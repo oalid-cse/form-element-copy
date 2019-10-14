@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <form action="" id="submit-form">
+        <div class="group_of_form">
+            <div class="copy_element copy_element_1">
+                Name: <input type="text"> <br>
+                Email: <input type="text"> <br>
+                Phone: <input type="text"> <br>
+                <button type="button" onclick="add_more_item()">Add More</button>
+            </div>
+        </div>
+    </form>
+
+
+
+    <div class="hidden_item_for_copy" style="display:none;">
+        <div id="item_for_copy_1">
+            <div class="copy_element copy_element_1">
+                Name: <input type="text"> <br>
+                Email: <input type="text"> <br>
+                Phone: <input type="text"> <br>
+                <button type="button" onclick="add_more_item()">Add More</button>
+                <button type="button" class="remove_btn" onclick="remove_item(1)">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+
+        var start_item = 1;
+        function add_more_item() {
+            $("#item_for_copy_1 .copy_element").removeClass("copy_element_" + start_item);
+            $("#item_for_copy_1 .copy_element .remove_btn").removeAttr("onclick");
+            start_item++;
+            $("#item_for_copy_1 .copy_element").addClass("copy_element_" + start_item);
+            $("#item_for_copy_1 .copy_element .remove_btn").attr("onclick", "remove_item("+ start_item +")");
+            let new_html = $("#item_for_copy_1").html();
+            $(".group_of_form").append(new_html);
+        }
+
+        function remove_item(id) {
+            $("#submit-form .copy_element_" + id).remove();
+        }
+
+
+    </script>
+</body>
+</html>
